@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">RecommendGoing</string>
+
+    <string name = "category1_name">CoffeeShop</string>
+    <string name = "category1_about">Where I buy coffee</string>
+
+    <string name = "category2_name">Cafe</string>
+    <string name = "category2_about">Where I like to eat and drink coffee</string>
+
+    <string name = "category3_name">CheeseMarket</string>
+    <string name = "category3_about">Where I like to buy cheese</string>
+
+    <string name = "category4_name">Kid-friendly places</string>
+    <string name = "category4_about">Where my kid can misbehave and have fun</string>
+
+    <string name = "category5_name">Parks</string>
+    <string name = "category5_about">Where I like go to walk, bike and scooter</string>
+
+    <string name = "category6_name">Sports</string>
+    <string name = "category6_about">Where I am active</string>
+
+
+    <string name = "place1_name">CoffeeFabrica</string>
+    <string name = "place1_about">Сoffee of our own roasting</string>
+    <string name = "place1_address">Focus Moldavskaya Street, 16, 1st floor, 2 branches, Kurchatovsky district, Chelyabinsk, 454021</string>
+
+    <string name = "place4_name">Pinnolli</string>
+    <string name = "place4_about">The chef is a real Italian</string>
+    <string name = "place4_address">Sony Krivoy Street, 28, 1st floor, Central District, Chelyabinsk, 454080</string>
+
+    <string name = "place7_name">CheeseHouse</string>
+    <string name = "place7_about">great gift sets</string>
+    <string name = "place7_address">Solnechnaya, 40 Kurchatovsky district, Chelyabinsk, 454021</string>
+
+    <string name = "place11_name">Papa Carlo</string>
+    <string name = "place11_about">Children\'s rooms equipped with video cameras</string>
+    <string name = "place11_address">Central Park of Culture and Leisure named after Yuri Gagarin Kommuny, 100, 1st, 2nd floor, 2 branches, Central District, Chelyabinsk, 454080</string>
+
+    <string name = "place14_name">Park of Gagarin</string>
+    <string name = "place14_about">Park in old city\'s center</string>
+    <string name = "place14_address">Kommuny, 100, building 6, Central District, Chelyabinsk, 454080</string>
+
+    <string name = "place17_name">SokolFit</string>
+    <string name = "place17_about">Quiet place with a gym and a swimming pool</string>
+    <string name = "place17_address">Residential complex Sokolinaya Gora, Sokolinaya Gora, 21, Chelyabinsk, 454013</string>
+
+    <string name="navigation_back">Back</string>
+
+</resources>
