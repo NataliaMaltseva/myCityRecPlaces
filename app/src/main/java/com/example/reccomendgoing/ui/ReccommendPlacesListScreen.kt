@@ -31,40 +31,13 @@ import com.example.reccomendgoing.data.local.LocalPlacesDataProvider
 fun ReccomendPlacesListScreen(
     recommendsUIState: RecommendsUIState,
     onPlacePressed: (Place) -> Unit,
-    onBackToCategoryPressed: () -> Unit,
-    onBackToPlacesListPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-//    список мест выбранной категории
-    if(recommendsUIState.isShowingPlaceScreen) {
-        Column(
-            modifier = modifier
-        ) {
-            RecommendTopBar(
-                title = stringResource(recommendsUIState.currentSelectedCategory.name),
-                onBackButtonClicked = onBackToPlacesListPressed,
-                showBackArrow = true
-            )
-            ReccommendPlaceScreen(
-                uiState = recommendsUIState
-            )
-        }
-    }
-    else {
-        Column(
-            modifier = modifier
-        ) {
-            RecommendTopBar(
-                onBackButtonClicked = onBackToCategoryPressed
-            )
-
-            ReccomendPlacesList(
-                recommendsUIState = recommendsUIState,
-                onPlacePressed = onPlacePressed,
-                modifier = modifier
-            )
-        }
-    }
+    ReccomendPlacesList(
+        recommendsUIState = recommendsUIState,
+        onPlacePressed = onPlacePressed,
+        modifier = modifier
+    )
 }
 
 @Composable
@@ -155,18 +128,5 @@ fun PreviewPlaceList() {
     ReccomendPlacesList(
         onPlacePressed = {},
         recommendsUIState = recommendsUIState
-    )
-}
-
-@Preview
-@Composable
-fun PreviewReccomendPlacesListScreen() {
-    val viewModel: RecommendViewModel = viewModel()
-    val recommendsUIState = viewModel.uiState.collectAsState().value
-    ReccomendPlacesListScreen(
-        recommendsUIState = recommendsUIState,
-        onPlacePressed = {},
-        onBackToCategoryPressed = {},
-        onBackToPlacesListPressed = {},
     )
 }

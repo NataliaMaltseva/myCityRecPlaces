@@ -31,35 +31,23 @@ import com.example.reccomendgoing.data.local.LocalCategoriesDataProvider
 @Composable
 fun RecommendHomeScreen(
     recommendsUIState: RecommendsUIState,
-    onCategoryPressed: (Category) -> Unit,
-    onPlacePressed: (Place) -> Unit,
-    onBackToCategoryPressed: () -> Unit,
-    onBackToPlacesListPressed: () -> Unit,
+    onCategoryPressed: () -> Unit,
+    updateCurCategory: (Category, RecommendViewModel) -> Unit,
     modifier: Modifier = Modifier
 ) {
-
-    if (recommendsUIState.isShowingPlacesList) {
-        ReccomendPlacesListScreen(
-            recommendsUIState = recommendsUIState,
-            onPlacePressed = onPlacePressed,
-            onBackToCategoryPressed = onBackToCategoryPressed,
-            onBackToPlacesListPressed = onBackToPlacesListPressed,
-            modifier = modifier
-            )
-    }
-    else {
-        RecommendCategoriesList(
-            recommendsUIState = recommendsUIState,
-            onCategoryPressed = onCategoryPressed,
-            modifier = modifier
-        )
-    }
+    RecommendCategoriesList(
+        recommendsUIState = recommendsUIState,
+        onCategoryPressed = onCategoryPressed,
+        updateCurCategory = updateCurCategory,
+        modifier = modifier
+    )
 }
 
 @Composable
 fun RecommendCategoriesList(
     recommendsUIState: RecommendsUIState,
-    onCategoryPressed: (Category) -> Unit,
+    updateCurCategory: (Category, RecommendViewModel) -> Unit,
+    onCategoryPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val categories = recommendsUIState.currentCategoriesList
@@ -67,15 +55,9 @@ fun RecommendCategoriesList(
     LazyColumn(
         modifier = modifier
     ) {
-        item {
-            RecommendTopBar(
-                onBackButtonClicked = {},
-                title = stringResource(R.string.app_name),
-                showBackArrow = false
-            )
-        }
         items(categories) { category ->
             RecommendCategoryItem(
+                updateCurCategory = updateCurCategory,
                 category=category,
                 onCategoryPressed = onCategoryPressed
                 )
@@ -86,14 +68,18 @@ fun RecommendCategoriesList(
 @Composable
 fun RecommendCategoryItem(
     category: Category,
-    onCategoryPressed: (Category) -> Unit,
+    onCategoryPressed: () -> Unit,
+    updateCurCategory: (Category, RecommendViewModel) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-        onClick =  { onCategoryPressed(category) }
+        onClick =  {
+            updateCurCategory(category)
+            onCategoryPressed()
+        }
     ) {
         Row(
             modifier = Modifier
@@ -138,7 +124,11 @@ fun RecommendCategoryImage(
 @Composable
 fun RecommendsCategoryItem() {
     val category = LocalCategoriesDataProvider.defaultCategory
-    RecommendCategoryItem(category=category, onCategoryPressed = {})
+    RecommendCategoryItem(
+        category=category,
+        onCategoryPressed = {},
+        updateCurCategory = {}
+    )
 }
 
 @Preview
@@ -146,5 +136,9 @@ fun RecommendsCategoryItem() {
 fun PreviewRecommendsCategoryList() {
     val viewModel: RecommendViewModel = viewModel()
     val recommendsUIState = viewModel.uiState.collectAsState().value
-    RecommendCategoriesList(recommendsUIState = recommendsUIState, onCategoryPressed = {})
+    RecommendCategoriesList(
+        recommendsUIState = recommendsUIState,
+        onCategoryPressed = {},
+        updateCurCategory = {}
+    )
 }

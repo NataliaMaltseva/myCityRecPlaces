@@ -45,5 +45,8 @@
     <string name = "place17_address">Residential complex Sokolinaya Gora, Sokolinaya Gora, 21, Chelyabinsk, 454013</string>
 
     <string name="navigation_back">Back</string>
+    <string name="choose_category">Categories</string>
+    <string name="choose_place">Places</string>
+    <string name="one_place">OnePlace</string>
 
 </resources>

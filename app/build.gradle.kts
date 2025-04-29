@@ -59,4 +59,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.material3)
     implementation(libs.lifecycle.viewmodel.compose)
+
+    implementation(libs.navigation)
 }

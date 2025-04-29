@@ -31,13 +31,13 @@ fun RecommendTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
     onBackButtonClicked: () -> Unit,
-    showBackArrow: Boolean = false
+    canNavigateBack: Boolean
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (showBackArrow) {
+        if (canNavigateBack) {
             IconButton(
                 onClick = onBackButtonClicked,
                 modifier = modifier
@@ -81,7 +81,7 @@ fun ReccomendTopBarPreview() {
     RecommendTopBar(
         title = stringResource(R.string.app_name),
         onBackButtonClicked = {},
-        showBackArrow = false
+        canNavigateBack = true
     )
 }
 
@@ -91,6 +91,6 @@ fun ReccomendTopBarPreviewArrow() {
     RecommendTopBar(
         title = stringResource(R.string.app_name),
         onBackButtonClicked = {},
-        showBackArrow = true
+        canNavigateBack = false
     )
 }

@@ -33,7 +33,6 @@ class RecommendViewModel: ViewModel() {
     fun updateCurrentPlaceScreenStates(selectedPlace: Place) {
         _uiState.update {
             it.copy(
-
                 currentPlace = selectedPlace,
                 isShowingPlaceScreen = true
             )
