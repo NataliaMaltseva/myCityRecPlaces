@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.reccomendgoing.ui.RecommendApp
-import com.example.reccomendgoing.ui.RecommendTopBar
+
 import com.example.reccomendgoing.ui.theme.RecommendGoingTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,15 +21,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RecommendGoingTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    innerPadding ->
-                    RecommendApp(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                    )
-                }
+                RecommendApp(
+                    modifier = Modifier
+                )
             }
         }
     }

@@ -30,19 +30,10 @@ class RecommendViewModel: ViewModel() {
     }
 
 //    при нажатии на пункт списка Места
-    fun updateCurrentPlaceScreenStates(selectedPlace: Place) {
+    fun updateCurrentOnePlace(selectedPlace: Place) {
         _uiState.update {
             it.copy(
-                currentPlace = selectedPlace,
-                isShowingPlaceScreen = true
-            )
-        }
-    }
-
-    fun resetPlaceDetailsScreenStates() {
-        _uiState.update {
-            it.copy(
-                isShowingPlaceScreen = false
+                currentPlace = selectedPlace
             )
         }
     }
@@ -50,8 +41,7 @@ class RecommendViewModel: ViewModel() {
     fun updateCurrentPlacesList(selectedCategory: Category) {
         _uiState.update {
             it.copy(
-                currentSelectedCategory = selectedCategory,
-                isShowingPlacesList = true
+                currentSelectedCategory = selectedCategory
             )
         }
     }
@@ -59,8 +49,7 @@ class RecommendViewModel: ViewModel() {
     fun resetCurrentPlacesListScreen() {
         _uiState.update {
             it.copy(
-                currentSelectedCategory = LocalCategoriesDataProvider.defaultCategory,
-                isShowingPlacesList = false
+                currentSelectedCategory = LocalCategoriesDataProvider.defaultCategory
             )
         }
     }

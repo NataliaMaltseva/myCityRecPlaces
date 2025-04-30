@@ -37,6 +37,7 @@ fun ReccommendPlaceScreen(
 ) {
     val currentPlace = uiState.currentPlace
     val currentCategory = uiState.currentSelectedCategory
+
     Column(
         modifier = modifier
             .fillMaxWidth()

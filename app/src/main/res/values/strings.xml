@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">RecommendGoing</string>
+    <string name="back_button">Back</string>
 
     <string name = "category1_name">CoffeeShop</string>
     <string name = "category1_about">Where I buy coffee</string>

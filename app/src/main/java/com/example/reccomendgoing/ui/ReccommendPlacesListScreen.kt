@@ -30,11 +30,13 @@ import com.example.reccomendgoing.data.local.LocalPlacesDataProvider
 @Composable
 fun ReccomendPlacesListScreen(
     recommendsUIState: RecommendsUIState,
+    viewModel: RecommendViewModel,
     onPlacePressed: (Place) -> Unit,
     modifier: Modifier = Modifier
 ) {
     ReccomendPlacesList(
         recommendsUIState = recommendsUIState,
+        viewModel = viewModel,
         onPlacePressed = onPlacePressed,
         modifier = modifier
     )
@@ -43,15 +45,18 @@ fun ReccomendPlacesListScreen(
 @Composable
 fun ReccomendPlacesList(
     recommendsUIState: RecommendsUIState,
+    viewModel: RecommendViewModel,
     onPlacePressed: (Place) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val categoryPlaces = recommendsUIState.currentCategoryPlaces
+
     LazyColumn(
         modifier = modifier
     ) {
         items(categoryPlaces) { placeItem ->
             ReccommendPlaceItem(
+                viewModel = viewModel,
                 onPlacePressed = onPlacePressed,
                 placeItem = placeItem
             )
@@ -61,6 +66,7 @@ fun ReccomendPlacesList(
 
 @Composable
 fun ReccommendPlaceItem(
+    viewModel: RecommendViewModel,
     onPlacePressed: (Place) -> Unit,
     placeItem: Place
 ) {
@@ -69,7 +75,10 @@ fun ReccommendPlaceItem(
             .padding(
             bottom = dimensionResource(R.dimen.place_list_outer_padding)
         ),
-        onClick = { onPlacePressed(placeItem)}
+        onClick = {
+            viewModel.updateCurrentOnePlace(selectedPlace = placeItem)
+            onPlacePressed(placeItem)
+        }
     ){
         Row(
             modifier = Modifier,
@@ -113,8 +122,11 @@ fun PlaceItemImage(
 @Composable
 fun PreviewPlaceItem() {
     val placeDefault = LocalPlacesDataProvider.defaultPlace
+    val viewModel: RecommendViewModel = viewModel()
+
     ReccommendPlaceItem(
         onPlacePressed = {},
+        viewModel = viewModel,
         placeItem = placeDefault
     )
 }
@@ -127,6 +139,7 @@ fun PreviewPlaceList() {
 
     ReccomendPlacesList(
         onPlacePressed = {},
-        recommendsUIState = recommendsUIState
+        recommendsUIState = recommendsUIState,
+        viewModel = viewModel
     )
 }

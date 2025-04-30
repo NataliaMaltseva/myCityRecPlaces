@@ -32,13 +32,13 @@ import com.example.reccomendgoing.data.local.LocalCategoriesDataProvider
 fun RecommendHomeScreen(
     recommendsUIState: RecommendsUIState,
     onCategoryPressed: () -> Unit,
-    updateCurCategory: (Category, RecommendViewModel) -> Unit,
+    viewModel: RecommendViewModel,
     modifier: Modifier = Modifier
 ) {
     RecommendCategoriesList(
         recommendsUIState = recommendsUIState,
         onCategoryPressed = onCategoryPressed,
-        updateCurCategory = updateCurCategory,
+        viewModel = viewModel,
         modifier = modifier
     )
 }
@@ -46,7 +46,7 @@ fun RecommendHomeScreen(
 @Composable
 fun RecommendCategoriesList(
     recommendsUIState: RecommendsUIState,
-    updateCurCategory: (Category, RecommendViewModel) -> Unit,
+    viewModel: RecommendViewModel,
     onCategoryPressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -57,8 +57,8 @@ fun RecommendCategoriesList(
     ) {
         items(categories) { category ->
             RecommendCategoryItem(
-                updateCurCategory = updateCurCategory,
                 category=category,
+                viewModel = viewModel,
                 onCategoryPressed = onCategoryPressed
                 )
         }
@@ -68,8 +68,8 @@ fun RecommendCategoriesList(
 @Composable
 fun RecommendCategoryItem(
     category: Category,
+    viewModel: RecommendViewModel,
     onCategoryPressed: () -> Unit,
-    updateCurCategory: (Category, RecommendViewModel) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -77,7 +77,7 @@ fun RecommendCategoryItem(
             .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
         onClick =  {
-            updateCurCategory(category)
+            viewModel.updateCurrentPlacesList(selectedCategory = category)
             onCategoryPressed()
         }
     ) {
@@ -124,10 +124,11 @@ fun RecommendCategoryImage(
 @Composable
 fun RecommendsCategoryItem() {
     val category = LocalCategoriesDataProvider.defaultCategory
+
     RecommendCategoryItem(
         category=category,
         onCategoryPressed = {},
-        updateCurCategory = {}
+        viewModel = RecommendViewModel()
     )
 }
 
@@ -139,6 +140,6 @@ fun PreviewRecommendsCategoryList() {
     RecommendCategoriesList(
         recommendsUIState = recommendsUIState,
         onCategoryPressed = {},
-        updateCurCategory = {}
+        viewModel = RecommendViewModel()
     )
 }

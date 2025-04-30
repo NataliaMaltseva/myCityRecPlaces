@@ -10,8 +10,7 @@ data class RecommendsUIState(
     val currentSelectedCategory: Category = LocalCategoriesDataProvider.defaultCategory,
     val currentCategoriesList: List<Category> = LocalCategoriesDataProvider.allCategories,
     val currentPlace: Place = LocalPlacesDataProvider.defaultPlace,
-    val isShowingPlaceScreen: Boolean = true,
-    val isShowingPlacesList: Boolean = false
+    val isShowingArrowBack: Boolean = false
 ) {
     val currentCategoryPlaces: List<Place> by lazy {categoryPlaces[currentSelectedCategory.id]!!}
 }

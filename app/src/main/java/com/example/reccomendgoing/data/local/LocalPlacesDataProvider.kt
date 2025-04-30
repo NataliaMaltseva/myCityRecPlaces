@@ -22,32 +22,32 @@ object LocalPlacesDataProvider {
             image = R.drawable.place_4
         ),
         Place(
-            id = 1,
-            idCat = 1,
+            id = 3,
+            idCat = 3,
             name = R.string.place7_name,
             about = R.string.place7_about,
             address = R.string.place7_address,
             image = R.drawable.place_7
         ),
         Place(
-            id = 1,
-            idCat = 1,
+            id = 4,
+            idCat = 4,
             name = R.string.place11_name,
             about = R.string.place11_about,
             address = R.string.place11_address,
             image = R.drawable.place_11
         ),
         Place(
-            id = 1,
-            idCat = 1,
+            id = 5,
+            idCat = 5,
             name = R.string.place14_name,
             about = R.string.place14_about,
             address = R.string.place14_address,
             image = R.drawable.place_14
         ),
         Place(
-            id = 1,
-            idCat = 1,
+            id = 6,
+            idCat = 6,
             name = R.string.place17_name,
             about = R.string.place17_about,
             address = R.string.place17_address,
