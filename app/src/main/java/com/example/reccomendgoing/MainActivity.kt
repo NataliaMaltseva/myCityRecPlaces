@@ -35,27 +35,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@Preview(showBackground = true, widthDp = 700)
-@Composable
-fun GreetingPreviewMedium() {
-    RecommendGoingTheme {
-        RecommendApp(
-            modifier = Modifier
-            .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
-            windowSize = WindowWidthSizeClass.Medium
-        )
-    }
-}
-
-@Preview(showBackground = true, widthDp = 1000)
-@Composable
-fun GreetingPreviewExpand() {
-    RecommendGoingTheme {
-        RecommendApp(
-            modifier = Modifier
-                .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
-            windowSize = WindowWidthSizeClass.Expanded
-        )
-    }
-}

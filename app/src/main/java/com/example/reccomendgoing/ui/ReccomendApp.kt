@@ -24,6 +24,12 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.reccomendgoing.ui.theme.RecommendGoingTheme
+
+import com.example.reccomendgoing.ui.utils.ReccomendsContentType
+import com.example.reccomendgoing.ui.utils.ReccomendsNavigationType
 
 enum class ReccomendScreen(@StringRes val title: Int) {
     Start(title=R.string.app_name),
@@ -59,6 +65,29 @@ fun RecommendApp (
             )
         }
     ) { innerPadding ->
+
+        val navigationType: ReccomendsNavigationType
+        val contentType: ReccomendsContentType
+
+        when (windowSize) {
+            WindowWidthSizeClass.Compact -> {
+                navigationType = ReccomendsNavigationType.BOTTOM_NAVIGATION
+                contentType = ReccomendsContentType.LIST_ONLY
+            }
+            WindowWidthSizeClass.Medium -> {
+                navigationType = ReccomendsNavigationType.NAVIGATION_RAIL
+                contentType = ReccomendsContentType.LIST_ONLY
+            }
+            WindowWidthSizeClass.Expanded -> {
+                navigationType = ReccomendsNavigationType.PERMANENT_NAVIGATION_DRAWER
+                contentType = ReccomendsContentType.LIST_AND_DETAIL
+            }
+            else -> {
+                navigationType = ReccomendsNavigationType.BOTTOM_NAVIGATION
+                contentType = ReccomendsContentType.LIST_ONLY
+            }
+        }
+
         NavHost(
             navController = navController,
             startDestination = ReccomendScreen.Start.name,
@@ -99,5 +128,29 @@ fun RecommendApp (
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 700)
+@Composable
+fun GreetingPreviewMedium() {
+    RecommendGoingTheme {
+        RecommendApp(
+            modifier = Modifier
+                .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
+            windowSize = WindowWidthSizeClass.Medium
+        )
+    }
+}
+
+@Preview(showBackground = true, widthDp = 1000)
+@Composable
+fun GreetingPreviewExpand() {
+    RecommendGoingTheme {
+        RecommendApp(
+            modifier = Modifier
+                .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
+            windowSize = WindowWidthSizeClass.Expanded
+        )
     }
 }
