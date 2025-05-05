@@ -12,30 +12,50 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.reccomendgoing.ui.RecommendApp
-
 import com.example.reccomendgoing.ui.theme.RecommendGoingTheme
 
+
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             RecommendGoingTheme {
+                val windowSize = calculateWindowSizeClass(this)
                 RecommendApp(
-                    modifier = Modifier
+                    modifier = Modifier,
+                    windowSize = windowSize.widthSizeClass
                 )
             }
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 700)
 @Composable
-fun GreetingPreview() {
+fun GreetingPreviewMedium() {
     RecommendGoingTheme {
         RecommendApp(
             modifier = Modifier
-            .padding(dimensionResource(R.dimen.category_list_item_outer_padding))
+            .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
+            windowSize = WindowWidthSizeClass.Medium
+        )
+    }
+}
+
+@Preview(showBackground = true, widthDp = 1000)
+@Composable
+fun GreetingPreviewExpand() {
+    RecommendGoingTheme {
+        RecommendApp(
+            modifier = Modifier
+                .padding(dimensionResource(R.dimen.category_list_item_outer_padding)),
+            windowSize = WindowWidthSizeClass.Expanded
         )
     }
 }

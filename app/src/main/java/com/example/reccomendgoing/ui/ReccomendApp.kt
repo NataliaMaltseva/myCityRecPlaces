@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,14 +20,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.reccomendgoing.ui.RecommendTopBar
 
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+
 enum class ReccomendScreen(@StringRes val title: Int) {
     Start(title=R.string.app_name),
     Places(title = R.string.choose_place),
     OnePlace(title = R.string.one_place)
 }
 
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun RecommendApp (
+    windowSize: WindowWidthSizeClass,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
@@ -40,7 +48,6 @@ fun RecommendApp (
     val currentScreen = ReccomendScreen.valueOf(
         backStackEntry?.destination?.route?:ReccomendScreen.Start.name
     )
-
     Scaffold(
         topBar = {
             RecommendTopBar(
